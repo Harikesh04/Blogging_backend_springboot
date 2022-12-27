@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import com.mohammedkhadeer.blog.payloads.ApiResponse;
 
-@RestControllerAdvice
+@RestControllerAdvice// with the help of this annotation we do global exception handling for all the controllers
 public class GlobalExceptionHandler {
 
 	@ExceptionHandler(ResourceNotFoundException.class)
@@ -21,6 +21,8 @@ public class GlobalExceptionHandler {
 		ApiResponse apiResponse = new ApiResponse(message, false);
 		return new ResponseEntity<ApiResponse>(apiResponse, HttpStatus.NOT_FOUND);
 	}
+	//now when ever in any of our api if there is resourcNotFoundException then 
+	//this method will run and return the response in this way
 
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public ResponseEntity<Map<String, String>> handleMethodArgsNotValidException(MethodArgumentNotValidException ex) {

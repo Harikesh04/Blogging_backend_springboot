@@ -32,7 +32,9 @@ public class UserController {
 	// POST-create user
 	@PostMapping("/")
 	public ResponseEntity<UserDto> createUser(@Valid @RequestBody UserDto userDto) {
-		UserDto createUserDto = this.userService.createUser(userDto);
+		//@RequestBody annotation allows us to retrieve the req's body and automatically convert it to java obj
+		//@Valid because we are using validation in dto , there we have to use this annotation here
+		UserDto createUserDto = this.userService.createUser(userDto);//using user service's class method from its obj userService
 		return new ResponseEntity<>(createUserDto, HttpStatus.CREATED);
 	}
 

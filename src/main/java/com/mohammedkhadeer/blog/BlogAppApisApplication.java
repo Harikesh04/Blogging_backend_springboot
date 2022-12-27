@@ -27,10 +27,11 @@ public class BlogAppApisApplication implements CommandLineRunner {
 		SpringApplication.run(BlogAppApisApplication.class, args);
 	}
 
-	@Bean
+	@Bean//with the help of this bean annotation spring container automatically generate its obj where we do autowiring .
 	public ModelMapper modelMapper() {
 		return new ModelMapper();
 	}
+	// creating modelMapper whose return type is ModelMapper 
 
 
 	@Override

@@ -40,6 +40,8 @@ public class UserDto {
 	private String about;
 	
 	private Set<RoleDto> roles = new HashSet<>();
+
+	//here with the help of @NotEmpty ,@Size , @Email annotation we are validation out data transferr obj (dto) . which  the help of bean validation(hybernate validator/spring boot stater validation)
 	
 	
 

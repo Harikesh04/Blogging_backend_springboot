@@ -81,6 +81,9 @@ public class UserServiceImpl implements UserService {
 
 	public User dtoToUser(UserDto userDto) {
 		User user = this.modelMapper.map(userDto, User.class);
+		//map(source(kis obj ko covert krna h ),destination(kis obj k class m covert krna h))
+
+		//modelMapper => inbuilt class uses for coverting one model into another
 
 		// user.setId(userDto.getId());
 		// user.setName(userDto.getName());
