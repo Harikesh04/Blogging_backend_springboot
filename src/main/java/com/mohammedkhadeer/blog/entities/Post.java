@@ -42,13 +42,15 @@ public class Post {
 
 	@ManyToOne
 	@JoinColumn(name = "category_id")
-	private Category category;
+	private Category category;// for post is of which category
+	//since many posts are mapping with single category therefore ManyToOne.
 
 	@ManyToOne
-	private User user;
+	private User user;// for which user has created this post.
 	
 	
 	@OneToMany(mappedBy = "post",cascade = CascadeType.ALL)
 	private Set<Comment> comments=new HashSet<>();
+	// since one post is mapping with multiple comments therefore OneToMany
 
 }

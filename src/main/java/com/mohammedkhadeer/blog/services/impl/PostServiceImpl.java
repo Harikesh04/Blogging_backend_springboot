@@ -27,7 +27,7 @@ import com.mohammedkhadeer.blog.services.PostService;
 public class PostServiceImpl implements PostService {
 
 	@Autowired
-	private PostRepo postRepo;
+	private PostRepo postRepo;//since for performing db operations we always needs this . creating its obj for using it here in this class.
 
 	@Autowired
 	private ModelMapper modelMapper;
@@ -44,10 +44,12 @@ public class PostServiceImpl implements PostService {
 		User user = this.userRepo.findById(userId)
 				.orElseThrow(() -> new ResourceNotFoundException("User ", "User id", userId));
 
+				//finding user with the given id if we don't get then will give error in res.
+
 		Category category = this.categoryRepo.findById(categoryId)
 				.orElseThrow(() -> new ResourceNotFoundException("Category", "category id ", categoryId));
-
-		Post post = this.modelMapper.map(postDto, Post.class);
+			////finding category with the given id if we don't get then will give error in res.
+		Post post = this.modelMapper.map(postDto, Post.class);//with help of modelMapper converting dto to PostEntity .
 		post.setImageName("default.png");
 		post.setAddedDate(new Date());
 		post.setUser(user);
@@ -87,10 +89,10 @@ public class PostServiceImpl implements PostService {
 
 		Sort sort = (sortDir.equalsIgnoreCase("asc")) ? Sort.by(sortBy).ascending() : Sort.by(sortBy).descending();
 
-		Pageable p = PageRequest.of(pageNumber, pageSize, sort);
+		Pageable p = PageRequest.of(pageNumber, pageSize, sort);//PageRequest.of method is already there in JPA. we are just using that. 
 
-		Page<Post> pagePost = this.postRepo.findAll(p);
-
+		Page<Post> pagePost = this.postRepo.findAll(p);//findAll(org.springframework.data.domain.Pageable pageable);already there in JPA. 
+		
 		List<Post> allPosts = pagePost.getContent();
 
 		List<PostDto> postDtos = allPosts.stream().map((post) -> this.modelMapper.map(post, PostDto.class))

@@ -18,6 +18,9 @@ public class PostResponse {
 	private long totalElements;
 	private int totalPages;	
 	private boolean lastPage;
+
+
+	//these things we wants to send in response to the client , if you want to add more thing than can do that also 
 	
 	
 }

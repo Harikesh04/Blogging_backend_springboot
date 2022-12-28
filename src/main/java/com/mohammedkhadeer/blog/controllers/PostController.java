@@ -77,10 +77,15 @@ public class PostController {
 
 	@GetMapping("/posts")
 	public ResponseEntity<PostResponse> getAllPost(
+		//accessing data from query
+
+		//required false=> if user wants to pass then can pass it else not mandatory 
 			@RequestParam(value = "pageNumber", defaultValue = AppConstants.PAGE_NUMBER, required = false) Integer pageNumber,
 			@RequestParam(value = "pageSize", defaultValue = AppConstants.PAGE_SIZE, required = false) Integer pageSize,
 			@RequestParam(value = "sortBy", defaultValue = AppConstants.SORT_BY, required = false) String sortBy,
-			@RequestParam(value = "sortDir", defaultValue = AppConstants.SORT_DIR, required = false) String sortDir) {
+			@RequestParam(value = "sortDir", defaultValue = AppConstants.SORT_DIR, required = false) String sortDir) 
+			//sortDir=> sort direction default= ascending
+			{
 
 		PostResponse postResponse = this.postService.getAllPost(pageNumber, pageSize, sortBy, sortDir);
 		return new ResponseEntity<PostResponse>(postResponse, HttpStatus.OK);

@@ -26,6 +26,7 @@ public class GlobalExceptionHandler {
 
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public ResponseEntity<Map<String, String>> handleMethodArgsNotValidException(MethodArgumentNotValidException ex) {
+		//here using this method for input from the user for dto if any of the input is not valid according to us (the conditon that we passed in dto) then in response we will create a map of all the input with key:fieldname value:message.
 		Map<String, String> resp = new HashMap<>();
 		ex.getBindingResult().getAllErrors().forEach((error) -> {
 			String fieldName = ((FieldError) error).getField();

@@ -37,5 +37,6 @@ public class Category {
 	
 	@OneToMany(mappedBy = "category",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private List<Post> posts=new ArrayList<>();
+	//since one category is mapping with multiple post therefore we are using OneToMany annotation
 	
 }
